@@ -50,15 +50,19 @@ export default function Cart() {
                 key={item.product.id}
                 className="flex gap-4 bg-white rounded-2xl border border-stone-200 p-4 shadow-sm"
               >
-                <img
-                  src={item.product.image}
-                  alt={item.product.name}
-                  className="w-24 h-24 rounded-xl object-cover flex-shrink-0"
-                />
+                <Link to={`/product/${item.product.id}`} className="flex-shrink-0">
+                  <img
+                    src={item.product.image}
+                    alt={item.product.name}
+                    className="w-24 h-24 rounded-xl object-cover hover:opacity-80 transition-opacity"
+                  />
+                </Link>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between gap-2">
                     <div>
-                      <h3 className="font-semibold text-gray-900">{item.product.name}</h3>
+                      <Link to={`/product/${item.product.id}`} className="hover:text-green-700 transition-colors">
+                        <h3 className="font-semibold text-gray-900">{item.product.name}</h3>
+                      </Link>
                       <p className="text-sm text-gray-400">{item.product.unit}</p>
                     </div>
                     <button

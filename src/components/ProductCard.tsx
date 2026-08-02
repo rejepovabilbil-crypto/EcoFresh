@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ShoppingCart, Check } from 'lucide-react';
 import type { Product } from '@/data/products';
 import { useCart } from '@/context/CartContext';
@@ -11,14 +12,19 @@ export default function ProductCard({ product }: { product: Product }) {
   const outOfStock = product.stock === 0;
   const lowStock = product.stock > 0 && product.stock < 10;
 
-  function handleAdd() {
+  function handleAdd(e: React.MouseEvent) {
+    e.preventDefault();
+    e.stopPropagation();
     addItem(product);
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
   }
 
   return (
-    <div className="group bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col">
+    <Link
+      to={`/product/${product.id}`}
+      className="group bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col"
+    >
       {/* Image */}
       <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
         <img
@@ -49,7 +55,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
       {/* Content */}
       <div className="p-4 flex flex-col flex-1">
-        <h3 className="font-semibold text-gray-900 text-base mb-1">{product.name}</h3>
+        <h3 className="font-semibold text-gray-900 text-base mb-1 group-hover:text-green-700 transition-colors">{product.name}</h3>
         <p className="text-sm text-gray-500 leading-relaxed mb-3 flex-1">{product.description}</p>
 
         <div className="flex items-center justify-between text-xs text-gray-400 mb-3">
@@ -84,6 +90,6 @@ export default function ProductCard({ product }: { product: Product }) {
           </button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

@@ -7,6 +7,7 @@ import ProtectedRoute from '@/components/ProtectedRoute';
 import Home from '@/pages/Home';
 import About from '@/pages/About';
 import Shop from '@/pages/Shop';
+import ProductDetail from '@/pages/ProductDetail';
 import Contact from '@/pages/Contact';
 import Cart from '@/pages/Cart';
 import Checkout from '@/pages/Checkout';
@@ -55,6 +56,7 @@ function AppRoutes() {
         <Route path="/" element={<RoleRedirect />} />
         <Route path="/about" element={<About />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
